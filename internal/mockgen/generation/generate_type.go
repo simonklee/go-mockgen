@@ -39,10 +39,41 @@ func generateType(typ types.Type, importPath, outputImportPath string, variadic 
 		return generateTypeParamType(t)
 	case *types.Union:
 		return generateUnionType(t, recur)
+	case *types.Alias:
+		return generateAliasType(t, importPath, outputImportPath, recur)
 
 	default:
 		panic(fmt.Sprintf("unsupported case: %#v\n", typ))
 	}
+}
+
+func generateAliasType(t *types.Alias, importPath, outputImportPath string, generate typeGenerator) *jen.Statement {
+	name := generateQualifiedAliasName(t, importPath, outputImportPath)
+
+	if typeArgs := t.TypeArgs(); typeArgs != nil {
+		typeArguments := make([]jen.Code, 0, typeArgs.Len())
+		for i := 0; i < typeArgs.Len(); i++ {
+			typeArguments = append(typeArguments, generate(typeArgs.At(i)))
+		}
+
+		name = name.Types(typeArguments...)
+	}
+
+	return name
+}
+
+func generateQualifiedAliasName(t *types.Alias, importPath, outputImportPath string) *jen.Statement {
+	name := t.Obj().Name()
+
+	if t.Obj().Pkg() == nil {
+		return jen.Id(name)
+	}
+
+	if path := t.Obj().Pkg().Path(); path != "" {
+		return jen.Qual(sanitizeImportPath(path, outputImportPath), name)
+	}
+
+	return jen.Qual(sanitizeImportPath(importPath, outputImportPath), name)
 }
 
 func generateArrayType(t *types.Array, generate typeGenerator) *jen.Statement {
