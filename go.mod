@@ -1,4 +1,4 @@
-module github.com/derision-test/go-mockgen/v2
+module github.com/simonklee/go-mockgen/v2
 
 go 1.23
 
