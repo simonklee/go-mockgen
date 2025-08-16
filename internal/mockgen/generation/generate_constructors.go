@@ -6,7 +6,7 @@ import (
 	"unicode"
 
 	"github.com/dave/jennifer/jen"
-	"github.com/derision-test/go-mockgen/v2/internal/mockgen/types"
+	"github.com/simonklee/go-mockgen/v2/internal/mockgen/types"
 )
 
 func generateMockStructConstructor(iface *wrappedInterface, constructorPrefix, outputImportPath string) jen.Code {

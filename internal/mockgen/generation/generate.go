@@ -11,9 +11,9 @@ import (
 	"strings"
 
 	"github.com/dave/jennifer/jen"
-	"github.com/derision-test/go-mockgen/v2/internal/mockgen/consts"
-	"github.com/derision-test/go-mockgen/v2/internal/mockgen/paths"
-	"github.com/derision-test/go-mockgen/v2/internal/mockgen/types"
+	"github.com/simonklee/go-mockgen/v2/internal/mockgen/consts"
+	"github.com/simonklee/go-mockgen/v2/internal/mockgen/paths"
+	"github.com/simonklee/go-mockgen/v2/internal/mockgen/types"
 )
 
 type Options struct {

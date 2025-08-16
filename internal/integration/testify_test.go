@@ -5,9 +5,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/derision-test/go-mockgen/v2/internal/integration/testdata"
-	"github.com/derision-test/go-mockgen/v2/internal/integration/testdata/mocks"
-	mockassert "github.com/derision-test/go-mockgen/v2/testutil/assert"
+	"github.com/simonklee/go-mockgen/v2/internal/integration/testdata"
+	"github.com/simonklee/go-mockgen/v2/internal/integration/testdata/mocks"
+	mockassert "github.com/simonklee/go-mockgen/v2/testutil/assert"
 	"github.com/stretchr/testify/assert"
 )
 
